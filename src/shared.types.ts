@@ -27,6 +27,7 @@ interface ResultJson {
 
 // interfaces for the constructed member and results objects.
 interface Member {
+    readonly id: string;
     firstName: string;
     lastName: string;
     active: boolean;
@@ -35,7 +36,7 @@ interface Member {
     age: number;
     isJunior: () => boolean;
     isSenior: () => boolean;
-    fullName: string;
+    name: string;
 }
 
 interface Result {
@@ -44,8 +45,11 @@ interface Result {
     discipline: string;
     memberId: string;
     resultType: string;
+    _time: string;
+    member: Member;
     time: string;
     timeInMs: number;
     isCompetition: () => boolean;
+    isTraining: () => boolean;
 }
 
