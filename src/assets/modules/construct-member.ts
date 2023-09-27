@@ -5,13 +5,6 @@ function construct(memberObject: MemberJson): Member {
         active: memberObject.isActiveMember,
         birthDate: new Date(memberObject.dateOfBirth),
         image: memberObject.image,
-        renderDateOfBirth: (date: Date) => {
-            return new Intl.DateTimeFormat('da-DK', {
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-            }).format(date);
-        },
         get age() {
             const now = new Date();
             const age = now.getFullYear() - this.birthDate.getFullYear();
