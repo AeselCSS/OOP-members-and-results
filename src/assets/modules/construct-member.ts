@@ -1,11 +1,12 @@
 function construct(memberObject: MemberJson): Member {
     const member: Member = {
+        id: memberObject.id,
         firstName: memberObject.firstName,
         lastName: memberObject.lastName,
         active: memberObject.isActiveMember,
         birthDate: new Date(memberObject.dateOfBirth),
         image: memberObject.image,
-        get age() {
+        get age(): number {
             const now = new Date();
             const age = now.getFullYear() - this.birthDate.getFullYear();
             if (
@@ -24,11 +25,28 @@ function construct(memberObject: MemberJson): Member {
         isSenior: () => {
             return member.age >= 18;
         },
-        get fullName() {
+        get name() {
             return `${this.firstName} ${this.lastName}`;
         }
     };
+
+
+    Object.defineProperty(member, 'id', {
+        writable: false
+    });
+
+    Object.defineProperty(member, 'fullName', {
+        value: `${member.firstName} ${member.lastName}`,
+        enumerable: false
+    });
+
+    Object.defineProperty(member, 'image', {
+        value: memberObject.image,
+        enumerable: false
+    });
+
     return member;
 }
+
 
 export { construct };
