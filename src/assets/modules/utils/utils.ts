@@ -2,8 +2,7 @@ import * as member from "../construct-member.js";
 import * as result from "../construct-result.js";
 let members: Member[] = [];
 let results: Result[] = [];
-console.log(members)
-console.log(results)
+
 async function fetchMembers () : Promise<MemberJson[]> {
     const data = await fetch (`./assets/data/members.json`);
     return await data.json();
