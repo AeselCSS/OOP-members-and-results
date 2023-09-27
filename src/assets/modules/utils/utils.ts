@@ -13,7 +13,6 @@ async function fetchResults () : Promise<ResultJson[]> {
     return await data.json();
 }
 
-
 async function buildMemberList (): Promise<void> {
     const membersArr = await fetchMembers();
     for (const memberObj of membersArr) {
@@ -22,11 +21,18 @@ async function buildMemberList (): Promise<void> {
 }
 
 async function buildResultList (): Promise<void> {
-    const resultsArr = await fetchResults();
-    for (const resultObj of resultsArr) {
+    const resultsArr = await fetchResults()
+    // filter results so that only results with a member id that matches a member id in the members array are included
+    const filteredResults = resultsArr.filter(result => members.some(member => member.id === result.memberId));
+
+    for (const resultObj of filteredResults) {
         results.push(result.construct(resultObj));
     }
+    sortResults();
 }
 
+function sortResults (): void {
+    results.sort((a, b) => a.timeInMs - b.timeInMs);
+}
 
 export { members, results, buildMemberList, buildResultList };
