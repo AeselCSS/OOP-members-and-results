@@ -13,6 +13,17 @@ interface MemberJson {
     lastName: string;
 }
 
+interface ResultJson {
+    id: string;
+    competitionLocation: string;
+    competitionName: string;
+    competitionPlacement: number;
+    date: string;
+    discipline: string;
+    memberId: string;
+    resultType: string;
+    time: string;
+}
 
 // interfaces for the constructed member and results objects.
 interface Member {
@@ -28,4 +39,14 @@ interface Member {
     fullName: string;
 }
 
+interface Result {
+    id: string;
+    date: Date;
+    discipline: string;
+    memberId: string;
+    resultType: string;
+    time: string;
+    timeInMs: number;
+    isCompetition: () => boolean;
+}
 
