@@ -32,7 +32,6 @@ interface Member {
     active: boolean;
     birthDate: Date;
     image: string;
-    renderDateOfBirth: (date: Date) => string;
     age: number;
     isJunior: () => boolean;
     isSenior: () => boolean;
